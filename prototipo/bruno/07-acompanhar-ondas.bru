@@ -1,0 +1,17 @@
+meta {
+  name: Acompanhar ondas da vaga
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/vagas/{{vagaId}}/dispatch
+  body: none
+  auth: none
+}
+
+docs {
+  Uma linha por onda: status, versao com que foi agendada, quando dispara,
+  quantos operadores notificou e quantos o provider confirmou entrega.
+  Depois de aceitar a vaga, as ondas futuras aparecem como "abortada".
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Publicar vaga urgente
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/vagas
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "local_id": "{{localId}}",
+    "especialidade": "limpeza",
+    "endereco": "Av. Paulista, 1000",
+    "latitude": -23.5614,
+    "longitude": -46.6559,
+    "data_inicio_local": "2026-08-18T20:00",
+    "timezone": "America/Sao_Paulo",
+    "duracao_minutos": 240,
+    "valor_centavos": 15000
+  }
+}
+
+vars:post-response {
+  vagaId: res.body.id
+}
+
+docs {
+  data_inicio_local e horario de parede no fuso do local; o Postgres converte.
+  Menos de 24h de antecedencia => resposta com "urgente": true e o dispatch em ondas comeca.
+  Ajuste a data para algo nas proximas horas, senao a vaga nao e urgente e nao dispara onda.
+}

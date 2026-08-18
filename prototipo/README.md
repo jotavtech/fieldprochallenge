@@ -42,6 +42,19 @@ npm run bench     # autocannon: 500 req/s em GET /vagas/perto-de-mim
 npm run typecheck
 ```
 
+## Coleção Bruno
+
+`bruno/` tem a API inteira pronta para clicar, e ela se auto-preenche: cada requisição guarda o id
+que a próxima precisa (local → operador → vaga), então dá para rodar de cima para baixo sem copiar
+uuid na mão.
+
+```bash
+cd bruno && npx @usebruno/cli run --env local   # ou abra a pasta no app do Bruno
+```
+
+Rodando em ordem: publica uma vaga urgente (201), aceita (200), mostra as ondas (200) e então
+editar/cancelar devolvem 409 — porque a vaga acabou de ser confirmada, que é o comportamento certo.
+
 ## Resultados medidos
 
 | Requisito | Alvo | Medido |

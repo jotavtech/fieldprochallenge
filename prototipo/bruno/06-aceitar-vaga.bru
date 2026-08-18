@@ -1,0 +1,23 @@
+meta {
+  name: Aceitar vaga (requisito 2)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/vagas/{{vagaId}}/aceitar
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "operador_id": "{{operadorId}}"
+  }
+}
+
+docs {
+  Primeira chamada: 200. Repita: 409 "essa vaga ja foi preenchida".
+  E um UPDATE condicional atomico — quem chega depois reavalia o WHERE contra a linha
+  ja confirmada, sai com rowCount 0 e nunca escreve. 409 em volume e saude, nao bug.
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Listar operadores
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/operadores?especialidade=limpeza&limite=100
+  body: none
+  auth: none
+}
+
+params:query {
+  especialidade: limpeza
+  limite: 100
+}
+
+vars:post-response {
+  operadorId: res.body[0].id
+}
+
+docs {
+  Filtre pela mesma especialidade da vaga: só operador compatível consegue aceitar.
+  Pegue ids daqui para o {{operadorId}} do ambiente.
+}

@@ -23,6 +23,14 @@ app.use(mockProvider);
 
 app.use((erro: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (erro instanceof ZodError) return res.status(400).json({ erro: 'payload invalido', detalhes: erro.issues });
+
+  // 22P02 = "invalid input syntax": id de path que nao e uuid chega ate o Postgres e
+  // volta como erro de sintaxe. Isso e entrada invalida do cliente, nao falha do servidor —
+  // tratar aqui cobre toda rota com :id de uma vez, em vez de validar em cada uma.
+  if (typeof erro === 'object' && erro !== null && (erro as { code?: string }).code === '22P02') {
+    return res.status(400).json({ erro: 'identificador invalido' });
+  }
+
   log('http.erro', { erro: String(erro) });
   res.status(500).json({ erro: 'erro interno' });
 });
