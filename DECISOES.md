@@ -126,11 +126,10 @@ do que eu entrego como código de produção. Priorizei o requisito 2 porque é 
 "quase certo" produz corrupção silenciosa: dois operadores no mesmo trabalho, descoberto pelo
 cliente. Latência ruim aparece num gráfico; dupla confirmação aparece numa reclamação.
 
-O que valida os números acima é um **spike**, que deixei versionado em `prototipo/` em vez de
-descrever de memória: ele implementa o desenho inteiro e é de onde saem o p99 e o comportamento das
-ondas. Não faz parte da entrega e nem do CI — é anexo de defesa, e a fronteira entre os dois é a
-raiz do repositório. O front está em
+Os números acima não são estimativa: saíram de um **spike** do desenho inteiro, que fica fora desta
+entrega — API e telas em
 [jotavtech/fieldpro-frontend-prototipo](https://github.com/jotavtech/fieldpro-frontend-prototipo).
+Medi antes de decidir, e entrego só o pedaço que o enunciado pede.
 
 Também fora, por decisão e não por falta de tempo: **PostGIS** (o geoindex do Redis resolve a
 fase 1 e é reversível); **scoring de matching** (as ondas já são a regra de prioridade que Produto

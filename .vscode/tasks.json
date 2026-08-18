@@ -1,44 +1,22 @@
 {
   "version": "2.0.0",
-  "options": {
-    // Força bash: os comandos usam $!, trap e until, que não são sintaxe de fish/zsh.
-    "shell": { "executable": "/bin/bash", "args": ["-c"] }
-  },
   "tasks": [
     {
-      "label": "entrega: teste de concorrência",
+      "label": "teste de concorrência",
       "detail": "o comando único do README — sobe o Postgres, aplica o schema e prova o requisito 2",
       "type": "shell",
-      "options": { "cwd": "${workspaceFolder}" },
       "command": "npm test",
+      "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": [],
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
       "group": { "kind": "test", "isDefault": true }
     },
     {
-      "label": "entrega: typecheck",
+      "label": "typecheck",
       "type": "shell",
-      "options": { "cwd": "${workspaceFolder}" },
       "command": "npm run typecheck",
+      "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": ["$tsc"],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
-    },
-    {
-      "label": "protótipo: bench (sobe tudo, mede e derruba)",
-      "detail": "anexo, não entrega: mede o p99 da busca a 500 req/s",
-      "type": "shell",
-      "options": { "cwd": "${workspaceFolder}/prototipo" },
-      "command": "set -e; docker compose up -d --wait; npm run db:migrate; npm run seed > /dev/null; npm start > /tmp/fieldpro-api.log 2>&1 & API=$!; trap 'kill $API 2>/dev/null' EXIT; until curl -sf localhost:3000/saude > /dev/null; do sleep 0.5; done; npm run bench",
-      "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
-    },
-    {
-      "label": "protótipo: demo ponta a ponta",
-      "detail": "ondas, edição versionada, aceites simultâneos e cap diário em ~20s",
-      "type": "shell",
-      "options": { "cwd": "${workspaceFolder}/prototipo" },
-      "command": "set -e; docker compose up -d --wait; npm run db:migrate; npm run seed > /dev/null; npm start > /tmp/fieldpro-api.log 2>&1 & API=$!; trap 'kill $API 2>/dev/null' EXIT; until curl -sf localhost:3000/saude > /dev/null; do sleep 0.5; done; ./demo.sh",
-      "problemMatcher": [],
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
     }
   ]

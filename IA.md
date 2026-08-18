@@ -97,7 +97,9 @@ e apontou que o enunciado pede **um pedaço só** ("não queremos ver ondas, pus
 ou autenticação em código"), a decisão de cortar foi minha: joguei fora ~35 arquivos que passavam
 nos testes e reduzi o repositório ao núcleo da aceitação. O trabalho não foi inútil — ele é a razão
 de `DECISOES.md` falar de agendamento, colapso de ondas e rate limit global com números medidos em
-vez de intenção. Mas entregar aquilo seria responder a um enunciado que ninguém escreveu.
+vez de intenção, e continua auditável em
+[jotavtech/fieldpro-frontend-prototipo](https://github.com/jotavtech/fieldpro-frontend-prototipo).
+Mas entregar aquilo aqui seria responder a um enunciado que ninguém escreveu.
 
 **2. Rejeitei o `JOIN operadores` dentro do UPDATE de aceitação.** A IA propôs (e implementou)
 checar elegibilidade — operador ativo e com especialidade compatível — dentro da mesma instrução
