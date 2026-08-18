@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: quality gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Sem step de lint: o projeto não usa ESLint. O gate estático é o `tsc --noEmit`
+      # com `strict` + `erasableSyntaxOnly` (que também garante que o Node roda o TS sem build).
+      - name: Typecheck
+        run: npm run typecheck
+
+      # É o mesmo comando único do README: o `pretest` sobe o Postgres via docker compose
+      # e aplica o schema. O runner do GitHub já tem Docker e Compose.
+      - name: Concurrency test
+        run: npm test

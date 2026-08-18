@@ -1,0 +1,27 @@
+{
+  "name": "fieldpro-aceitar-vaga",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Núcleo da aceitação de vaga (desafio técnico FieldPro)",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "pretest": "docker compose up -d --wait && npm run db:migrate",
+    "test": "node --test test/aceitar.test.ts",
+    "db:migrate": "docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U fieldpro -d fieldpro < db/schema.sql",
+    "start": "node src/servidor.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^5.0.1",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "typescript": "^5.8.0"
+  }
+}
