@@ -121,10 +121,16 @@ a 500 req/s sustentados** e staleness 0.
 
 ## Fora de escopo
 
-**Em código, tudo menos a aceitação** — ondas, push, busca geográfica, frontend e autenticação
-ficaram no papel, como o enunciado pede. Priorizei o requisito 2 porque é o único onde estar
+**A entrega é só a aceitação** — ondas, push, busca geográfica, frontend e autenticação estão fora
+do que eu entrego como código de produção. Priorizei o requisito 2 porque é o único onde estar
 "quase certo" produz corrupção silenciosa: dois operadores no mesmo trabalho, descoberto pelo
 cliente. Latência ruim aparece num gráfico; dupla confirmação aparece numa reclamação.
+
+O que valida os números acima é um **spike**, que deixei versionado em `prototipo/` em vez de
+descrever de memória: ele implementa o desenho inteiro e é de onde saem o p99 e o comportamento das
+ondas. Não faz parte da entrega e nem do CI — é anexo de defesa, e a fronteira entre os dois é a
+raiz do repositório. O front está em
+[jotavtech/fieldpro-frontend-prototipo](https://github.com/jotavtech/fieldpro-frontend-prototipo).
 
 Também fora, por decisão e não por falta de tempo: **PostGIS** (o geoindex do Redis resolve a
 fase 1 e é reversível); **scoring de matching** (as ondas já são a regra de prioridade que Produto

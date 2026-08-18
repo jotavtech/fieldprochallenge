@@ -1,0 +1,34 @@
+{
+  "name": "fieldpro-dispatch-ondas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dispatch em ondas para vagas urgentes (desafio técnico FieldPro)",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --watch src/server.ts",
+    "start": "node --env-file-if-exists=.env src/server.ts",
+    "worker": "node --env-file-if-exists=.env src/worker.ts",
+    "db:migrate": "docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U fieldpro -d fieldpro < db/schema.sql",
+    "seed": "node --env-file-if-exists=.env src/seed.ts",
+    "test": "node --env-file-if-exists=.env --test test/*.test.ts",
+    "test:unit": "node --test test/ondas.test.ts",
+    "bench": "bash bench/perto-de-mim.sh",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "bullmq": "^5.34.0",
+    "express": "^5.0.1",
+    "ioredis": "^5.4.1",
+    "pg": "^8.13.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "typescript": "^5.8.0"
+  }
+}

@@ -35,7 +35,19 @@ Para subir só a API: `npm start` (porta 3000).
 | `test/aceitar.test.ts` | a prova de concorrência |
 | `db/schema.sql` | só as tabelas que a aceitação toca |
 | `docs/` | documentos de origem (PRD, spec e estimativas) |
+| `prototipo/` | **anexo, não entrega**: o spike do sistema completo que produziu os números citados |
 
 O resto do sistema — ondas, push, busca geoespacial, frontend, autenticação — está desenhado em
-`DECISOES.md` e **deliberadamente fora do código**, como o enunciado pede. O porquê da priorização
-está na seção "Fora de escopo".
+`DECISOES.md` e **fora da entrega**, como o enunciado pede. O porquê da priorização está na seção
+"Fora de escopo".
+
+## Sobre `prototipo/`
+
+Antes de escolher o que entregar, implementei o desenho inteiro para poder medir em vez de supor:
+é de lá que vêm o `p99 = 70ms a 500 req/s` e o comportamento das ondas descritos em `DECISOES.md`.
+Deixei versionado em vez de descartar porque número medido sem código que o produza é só afirmação.
+
+**A entrega é a raiz do repositório** — `src/`, `test/`, `db/` e os quatro documentos. O
+`prototipo/` tem projeto, dependências e `docker compose` próprios, não é tocado pelo CI e não faz
+parte do `npm test` daqui. Para rodá-lo: `cd prototipo && cat README.md`. O front correspondente
+está em [jotavtech/fieldpro-frontend-prototipo](https://github.com/jotavtech/fieldpro-frontend-prototipo).
